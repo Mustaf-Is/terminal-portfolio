@@ -19,6 +19,13 @@ describe("terminal portfolio", () => {
     expect(screen.getByRole("heading", { name: /available commands/i })).toBeInTheDocument();
   });
 
+  it("renders an ASCII banner with equally sized rows", () => {
+    render(<App />);
+    const rows = screen.getByLabelText("Mustafë Ismajli").textContent?.split("\n") ?? [];
+    expect(rows).toHaveLength(3);
+    expect(rows.map((row) => row.length)).toEqual([48, 48, 48]);
+  });
+
   it("renders both project groups and all four projects", async () => {
     render(<App />);
     await run("projects");

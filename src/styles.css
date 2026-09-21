@@ -152,12 +152,15 @@ li { margin: 0.42rem 0; line-height: 1.55; }
 .terminal-hint { margin: 0.55rem 0 0; color: var(--muted); font-size: 0.72rem; }
 
 .ascii-banner {
+  width: max-content;
   max-width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
   margin: 0 0 1rem;
   color: var(--teal);
-  font: inherit;
+  font-family: "Cascadia Mono", "Cascadia Code", Consolas, "Liberation Mono", monospace;
+  font-size: inherit;
   font-weight: 600;
+  font-variant-ligatures: none;
   line-height: 1.45;
   white-space: pre;
 }

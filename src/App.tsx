@@ -48,6 +48,14 @@ const initialState: TerminalState = {
   nextId: 1,
 };
 
+const ASCII_BANNER_INNER_WIDTH = 46;
+const ASCII_BANNER_LABEL = "MUSTAFË ISMAJLI  //  SOFTWARE ENGINEER";
+const ASCII_BANNER = [
+  `┌${"─".repeat(ASCII_BANNER_INNER_WIDTH)}┐`,
+  `│  ${ASCII_BANNER_LABEL.padEnd(ASCII_BANNER_INNER_WIDTH - 2)}│`,
+  `└${"─".repeat(ASCII_BANNER_INNER_WIDTH)}┘`,
+].join("\n");
+
 function reducer(state: TerminalState, action: Action): TerminalState {
   switch (action.type) {
     case "SET_INPUT":
@@ -172,11 +180,7 @@ function Output({ result }: { result: CommandResult }) {
     case "welcome":
       return (
         <div className="welcome-output">
-          <pre className="ascii-banner" aria-label="Mustafë Ismajli">
-{`┌──────────────────────────────────────────────┐
-│  MUSTAFË ISMAJLI  //  SOFTWARE ENGINEER     │
-└──────────────────────────────────────────────┘`}
-          </pre>
+          <pre className="ascii-banner" aria-label="Mustafë Ismajli">{ASCII_BANNER}</pre>
           <p className="welcome-role">Software Engineer | Backend Systems, Automation & Python</p>
           <p className="muted-copy">Building reliable systems from APIs, data, and real-world workflows.</p>
           <p>Type <code>help</code> to explore or <code>projects</code> to see selected work.</p>
