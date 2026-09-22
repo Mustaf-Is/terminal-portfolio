@@ -38,63 +38,79 @@ export interface SocialLink {
 export const profile = {
   name: "Mustafë Ismajli",
   role: "Software Engineer",
-  location: "Kosovo",
-  tagline: "Backend Systems, Automation & Python",
+  location: "Prishtinë, Kosovo",
+  tagline: "Backend Systems, Data Pipelines & AI Automation",
   summary:
-    "Software engineer focused on backend systems, APIs, web scraping, data pipelines, automation, and practical AI integration. I enjoy turning messy real-world workflows into reliable, maintainable software while continuing to deepen my Python expertise.",
+    "Software engineer experienced in building backend systems, scalable web-scraping and ETL pipelines, and AI-driven automation. I work with Python, FastAPI, Node.js, TypeScript, OpenAI models, and cloud services across AWS and Azure to turn complex data workflows into reliable, production-ready software.",
 };
 
 export const experience: ExperienceItem[] = [
   {
-    role: "Software Engineer I",
-    company: "Radix Inc.",
-    period: "September 2025 - Present",
+    role: "Junior Software Engineer",
+    company: "Radix Software Inc.",
+    period: "Sep 2025 - Present",
     achievements: [
-      "Develop and deploy web scrapers that extract, clean, and integrate large-scale data from diverse sources.",
-      "Engineer data pipelines that automate internal ingestion workflows and accelerate data refresh cycles.",
-      "Build AI-assisted categorization and clustering workflows with OpenAI models.",
-      "Develop APIs and maintainable backend features with Node.js and TypeScript.",
+      "Helped scale platform coverage toward 14M+ integrated multifamily housing units by building and deploying web scrapers, data pipelines, and third-party property API integrations across diverse U.S. sources.",
+      "Contributed to an internal mapping platform that streamlined scraped-data processing through AI-driven data matching and mapping, automated scraper generation, and reduced reliance on external engineering teams.",
+      "Implemented AI-driven data classification and clustering workflows using OpenAI models and prompt engineering, improving the consistency and throughput of data-processing workflows.",
+      "Contributed to the design and development of an internal FastAPI service that exposes data stored in Amazon S3 to downstream services within the scraping platform.",
+      "Designed and developed backend services and REST APIs using Node.js and TypeScript, supporting core platform functionality and scalable data workflows.",
     ],
   },
   {
     role: "Software Engineer Intern",
-    company: "Radix Inc.",
-    period: "April 2025 - August 2025",
+    company: "Radix Software Inc.",
+    period: "Apr 2025 - Aug 2025",
     achievements: [
-      "Developed REST and GraphQL APIs with Node.js and MongoDB.",
-      "Implemented unit tests for services, mappers, and controllers.",
-      "Worked in an eight-person cross-functional team using Scrum, Kanban, and Jira.",
+      "Developed RESTful and GraphQL APIs using Node.js and MongoDB to support scalable web applications.",
+      "Implemented unit tests for services, mappers, and controllers to improve code reliability, maintainability, and overall quality.",
+      "Collaborated within an eight-member cross-functional Agile team following Scrum with Kanban practices, managing work in Jira while contributing to feature development and bug resolution.",
     ],
   },
 ];
 
 export const skills: SkillGroup[] = [
   {
-    name: "Backend & automation",
+    name: "Back-end development",
+    skills: ["FastAPI", "TypeScript", "Node.js"],
+  },
+  {
+    name: "Front-end development",
+    skills: ["HTML", "CSS", "JavaScript", "Bootstrap", "Tailwind", "ReactJS"],
+  },
+  {
+    name: "AI & data",
     skills: [
       "Python",
-      "Node.js",
-      "TypeScript",
-      "Express",
-      "Java",
-      "Spring Boot",
-      "REST",
-      "GraphQL",
-      "Web scraping",
+      "Databricks",
+      "LLMs",
+      "OpenAI",
+      "Prompt engineering",
       "Data pipelines",
+      "ETL",
+      "Web scraping",
     ],
   },
   {
-    name: "Data & infrastructure",
-    skills: ["MongoDB", "MySQL", "RabbitMQ", "Docker", "Azure", "Git", "GitHub"],
+    name: "Tools & engineering",
+    skills: [
+      "Git",
+      "GitHub",
+      "CI/CD",
+      "GitHub Actions",
+      "Docker",
+      "AWS",
+      "Azure",
+      "MongoDB",
+      "MySQL",
+      "DuckDB",
+      "Agile",
+      "Scrum",
+    ],
   },
   {
-    name: "Frontend",
-    skills: ["React", "JavaScript", "HTML", "CSS", "Tailwind", "Bootstrap"],
-  },
-  {
-    name: "Quality & workflow",
-    skills: ["Unit testing", "Jest", "Jira", "Scrum", "Kanban"],
+    name: "Soft skills",
+    skills: ["Teamwork", "Critical thinking", "Adaptability", "Time management", "Creativity"],
   },
 ];
 

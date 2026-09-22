@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import {
   coursework,
   education,
@@ -31,6 +31,34 @@ interface TerminalState {
   historyDraft: string;
   nextId: number;
 }
+
+type ThemeId = "articta" | "github" | "classic";
+
+const themeOptions: Array<{
+  id: ThemeId;
+  label: string;
+  description: string;
+  colors: [string, string, string];
+}> = [
+  {
+    id: "articta",
+    label: "Articta",
+    description: "Teal, amber and violet",
+    colors: ["#2dd4bf", "#fbbf24", "#a78bfa"],
+  },
+  {
+    id: "github",
+    label: "GitHub",
+    description: "Coral, lilac and sky blue",
+    colors: ["#f37067", "#d9bbf8", "#88d0ff"],
+  },
+  {
+    id: "classic",
+    label: "Classic Terminal",
+    description: "Monochrome green accents",
+    colors: ["#39ff14", "#7cff6b", "#86efac"],
+  },
+];
 
 type Action =
   | { type: "SET_INPUT"; value: string }
@@ -175,15 +203,67 @@ function ProjectGroup({ category }: { category: Project["category"] }) {
   );
 }
 
-function Output({ result }: { result: CommandResult }) {
+function ThemePicker({
+  theme,
+  selection,
+  isOpen,
+}: {
+  theme: ThemeId;
+  selection: ThemeId;
+  isOpen: boolean;
+}) {
+  return (
+    <div>
+      <SectionTitle>choose a theme</SectionTitle>
+      <p className="muted-copy">Use ↑/↓ or ←/→ to move, then press Enter to apply. Esc cancels.</p>
+      <div className="theme-picker" role="listbox" aria-label="Terminal themes">
+        {themeOptions.map((option) => (
+          <div
+            className={`theme-option${selection === option.id ? " theme-option--selected" : ""}`}
+            key={option.id}
+            role="option"
+            aria-selected={selection === option.id}
+          >
+            <span className="theme-option__cursor" aria-hidden="true">
+              {isOpen && selection === option.id ? ">" : " "}
+            </span>
+            <span className="theme-option__swatches" aria-hidden="true">
+              {option.colors.map((color) => <i key={color} style={{ backgroundColor: color }} />)}
+            </span>
+            <span className="theme-option__copy">
+              <strong>{option.label}</strong>
+              <small>{option.description}</small>
+            </span>
+            <span className="theme-option__status">
+              {isOpen ? (theme === option.id ? "active" : "") : (selection === option.id ? "applied" : "")}
+            </span>
+          </div>
+        ))}
+      </div>
+      {!isOpen && <p className="theme-picker__result">Theme applied: {themeOptions.find((option) => option.id === selection)?.label}</p>}
+    </div>
+  );
+}
+
+function Output({
+  result,
+  theme,
+  themeSelection,
+  themePickerOpen,
+}: {
+  result: CommandResult;
+  theme: ThemeId;
+  themeSelection: ThemeId;
+  themePickerOpen: boolean;
+}) {
   switch (result.kind) {
     case "welcome":
       return (
         <div className="welcome-output">
           <pre className="ascii-banner" aria-label="Mustafë Ismajli">{ASCII_BANNER}</pre>
-          <p className="welcome-role">Software Engineer | Backend Systems, Automation & Python</p>
-          <p className="muted-copy">Building reliable systems from APIs, data, and real-world workflows.</p>
-          <p>Type <code>help</code> to explore or <code>projects</code> to see selected work.</p>
+          <p className="welcome-role">Software Engineer | Backend Systems, Data Pipelines & AI Automation</p>
+          <p className="muted-copy">Building production-ready software for complex data and real-world workflows, from robust APIs to AI-powered automation. Passionate about the evolving world of AI, I'm driven to keep learning, take on new challenges, and grow as a software engineer.</p>
+          <p className="help-commands">Type <code>help</code> to explore or <code>projects</code> to see selected work.</p>
         </div>
       );
     case "help":
@@ -202,13 +282,22 @@ function Output({ result }: { result: CommandResult }) {
         </div>
       );
     case "whoami":
-      return <p>{profile.name} — {profile.role} in {profile.location}, focused on {profile.tagline.toLowerCase()}.</p>;
+      return (
+        <div className="whoami-output">
+          <p>
+            Hi, I'm {profile.name}, a software engineer based in {profile.location}. I have experience building backend systems, data pipelines, and AI-powered automation with Python, FastAPI, TypeScript, and Node.js. I'm especially interested in the evolving world of AI and in continuing to learn and grow as an engineer.
+          </p>
+          <p className="muted-copy">
+            Outside of tech, I enjoy reading and hiking. Football is another big passion of mine—I love both playing and watching the game.
+          </p>
+        </div>
+      );
     case "about":
       return (
         <div>
           <SectionTitle>about</SectionTitle>
           <p>{profile.summary}</p>
-          <p className="muted-copy">Current direction: production-minded Python, dependable backend architecture, and useful automation.</p>
+          <p className="muted-copy">Current focus: production-ready, AI-powered applications built on dependable backend architecture and scalable data workflows.</p>
         </div>
       );
     case "experience":
@@ -279,7 +368,7 @@ function Output({ result }: { result: CommandResult }) {
           <SectionTitle>contact</SectionTitle>
           <p>Open to thoughtful engineering conversations and opportunities.</p>
           <p><ExternalLink href="mailto:ismajlim26@gmail.com">ismajlim26@gmail.com</ExternalLink></p>
-          <p className="muted-copy">Phone number intentionally kept private.</p>
+          <p className="muted-copy">Email is the best way to reach me.</p>
         </div>
       );
     case "socials":
@@ -291,6 +380,8 @@ function Output({ result }: { result: CommandResult }) {
           </div>
         </div>
       );
+    case "theme":
+      return <ThemePicker theme={theme} selection={themeSelection} isOpen={themePickerOpen} />;
     case "history":
       return (
         <div>
@@ -313,8 +404,20 @@ function Output({ result }: { result: CommandResult }) {
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [theme, setTheme] = useState<ThemeId>("github");
+  const [themeSelections, setThemeSelections] = useState<Record<number, ThemeId>>({});
+  const [activeThemePickerId, setActiveThemePickerId] = useState<number | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const transcriptRef = useRef<HTMLDivElement>(null);
+  const themePickerOpen = activeThemePickerId !== null;
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
+
+  useEffect(() => () => {
+    delete document.documentElement.dataset.theme;
+  }, []);
 
   useEffect(() => {
     const transcript = transcriptRef.current;
@@ -331,10 +434,39 @@ export default function App() {
       const popup = window.open(result.url, "_blank", "noopener,noreferrer");
       if (popup) popup.opener = null;
     }
+    if (result.kind === "theme") {
+      const pickerId = state.nextId;
+      setThemeSelections((selections) => ({ ...selections, [pickerId]: theme }));
+      setActiveThemePickerId(pickerId);
+    }
     dispatch({ type: "EXECUTE", command, result });
   }
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (activeThemePickerId !== null) {
+      const themeSelection = themeSelections[activeThemePickerId] ?? theme;
+      const currentIndex = themeOptions.findIndex((option) => option.id === themeSelection);
+
+      if (["ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight"].includes(event.key)) {
+        event.preventDefault();
+        const direction = event.key === "ArrowUp" || event.key === "ArrowLeft" ? -1 : 1;
+        const nextIndex = (currentIndex + direction + themeOptions.length) % themeOptions.length;
+        setThemeSelections((selections) => ({
+          ...selections,
+          [activeThemePickerId]: themeOptions[nextIndex].id,
+        }));
+      } else if (event.key === "Enter") {
+        event.preventDefault();
+        setTheme(themeSelection);
+        setActiveThemePickerId(null);
+      } else if (event.key === "Escape") {
+        event.preventDefault();
+        setThemeSelections((selections) => ({ ...selections, [activeThemePickerId]: theme }));
+        setActiveThemePickerId(null);
+      }
+      return;
+    }
+
     if (event.key === "Enter") {
       event.preventDefault();
       runCommand();
@@ -359,7 +491,7 @@ export default function App() {
       <section className="terminal" aria-label="Mustafë Ismajli terminal portfolio">
         <header className="terminal-bar">
           <div className="window-controls" aria-hidden="true">
-            <span className="window-dot window-dot--coral" />
+            <span className="window-dot window-dot--violet" />
             <span className="window-dot window-dot--amber" />
             <span className="window-dot window-dot--teal" />
           </div>
@@ -372,7 +504,14 @@ export default function App() {
             {state.entries.map((entry) => (
               <section className="transcript-entry" key={entry.id}>
                 {entry.command && <div className="executed-command"><Prompt compact /><span>{entry.command}</span></div>}
-                <div className="command-output"><Output result={entry.result} /></div>
+                <div className="command-output">
+                  <Output
+                    result={entry.result}
+                    theme={theme}
+                    themeSelection={themeSelections[entry.id] ?? theme}
+                    themePickerOpen={activeThemePickerId === entry.id}
+                  />
+                </div>
               </section>
             ))}
           </div>
@@ -388,13 +527,16 @@ export default function App() {
               autoComplete="off"
               autoCorrect="off"
               spellCheck={false}
+              readOnly={themePickerOpen}
               value={state.input}
               onChange={(event) => dispatch({ type: "SET_INPUT", value: event.target.value })}
               onKeyDown={handleKeyDown}
               autoFocus
             />
           </div>
-          <p id="terminal-hint" className="terminal-hint">Enter to run · Tab to complete · ↑↓ for history</p>
+          <p id="terminal-hint" className="terminal-hint">
+            {themePickerOpen ? "↑↓←→ to choose · Enter to apply · Esc to cancel" : "Enter to run · Tab to complete · ↑↓ for history"}
+          </p>
         </div>
       </section>
     </main>

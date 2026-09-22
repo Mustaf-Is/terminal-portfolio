@@ -12,6 +12,7 @@ export type OutputKind =
   | "uni-projects"
   | "contact"
   | "socials"
+  | "theme"
   | "history"
   | "external"
   | "error"
@@ -83,6 +84,7 @@ export const commands: CommandDefinition[] = [
   { name: "source", usage: "source <project-slug>", description: "Open a project's source code", execute: (args) => projectRedirect("source", args) },
   { name: "contact", usage: "contact", description: "Show contact details", execute: () => ({ kind: "contact" }) },
   { name: "socials", usage: "socials", description: "Show social profiles", execute: () => ({ kind: "socials" }) },
+  { name: "theme", usage: "theme", description: "Choose a terminal color theme", execute: () => ({ kind: "theme" }) },
   { name: "github", usage: "github", description: "Open GitHub", execute: () => socialRedirect("github") },
   { name: "linkedin", usage: "linkedin", description: "Open LinkedIn", execute: () => socialRedirect("linkedin") },
   { name: "email", usage: "email", description: "Write an email", execute: () => socialRedirect("email") },
