@@ -24,6 +24,11 @@ describe("command engine", () => {
 
   it("completes commands and project slugs", () => {
     expect(getCompletions("wel")).toEqual(["welcome"]);
+    expect(getCompletions("the")).toEqual(["theme"]);
     expect(getCompletions("open man")).toEqual(["open mansory-mobilje"]);
+  });
+
+  it("opens the theme picker", () => {
+    expect(executeCommand("theme", { history: [] }).kind).toBe("theme");
   });
 });

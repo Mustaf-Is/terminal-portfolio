@@ -24,9 +24,10 @@ npm run preview
 - `projects`, `uni-projects`
 - `open <project-slug>`, `source <project-slug>`
 - `contact`, `socials`, `github`, `linkedin`, `email`, `resume`
-- `history`, `clear`
+- `theme`, `history`, `clear`
 
 Use the Up/Down arrows for command history and Tab for command or project completion.
+Run `theme`, use the arrow keys to choose a palette, and press Enter to apply it.
 
 ## Updating content
 
