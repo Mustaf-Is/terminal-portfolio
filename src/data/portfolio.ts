@@ -145,7 +145,7 @@ export const projects: Project[] = [
     title: "Mansory Mobilje",
     category: "featured",
     summary:
-      "A multilingual custom-furniture showcase with project galleries, detailed portfolio views, and an interactive product customizer.",
+      "Built as an MVP for a client, this site showcases custom furniture through project galleries and detailed pages, with an interactive customizer for exploring design options.",
     technologies: ["React", "TypeScript", "Vite", "React Router"],
     demoUrl: "https://mansory-mobilje.netlify.app/",
     repoUrl: "https://github.com/Mustaf-Is/mansory-mobilje",
@@ -155,7 +155,7 @@ export const projects: Project[] = [
     title: "ELB Construction",
     category: "featured",
     summary:
-      "A responsive French-language site for a Paris construction and renovation company, with services, completed work, testimonials, and direct WhatsApp/call paths.",
+      "Created a French-language site for a Paris construction and renovation company, with layouts adapted for both mobile and desktop. The pages bring the company’s services, completed work, and testimonials together, and include direct WhatsApp and call links for contacting the team.",
     technologies: ["React", "TypeScript", "Vite", "Responsive CSS"],
     demoUrl: "https://elb-construction.netlify.app/#accueil",
     repoUrl: "https://github.com/Mustaf-Is/elb-construction",
@@ -165,7 +165,7 @@ export const projects: Project[] = [
     title: "Illyrian Books",
     category: "university",
     summary:
-      "A responsive bookstore experience with search, genre discovery, Google Books data, detailed book views, authentication UI, and shopping-cart flows.",
+      "Developed as a university project, this responsive bookstore uses the Google Books API to display book information. I implemented search, genre browsing, book detail pages, sign-in screens, and shopping-cart flows, with layouts that adapt to smaller screens.",
     technologies: ["HTML", "CSS", "JavaScript", "jQuery", "Google Books API"],
     demoUrl: "https://illyrian-books.netlify.app/",
     repoUrl: "https://github.com/Mustaf-Is/ProgWWW_24_Gr7",
@@ -175,7 +175,7 @@ export const projects: Project[] = [
     title: "ProWeb",
     category: "university",
     summary:
-      "A responsive web-agency concept presenting development, hosting, responsive design, and SEO services alongside team, FAQ, portfolio, and contact sections.",
+      "A university project built as a responsive website for a fictional web agency. The work covers the agency’s development, hosting, design, and SEO services, with team, FAQ, portfolio, and contact sections. I used Bootstrap with HTML, CSS, and JavaScript to build the pages.",
     technologies: ["HTML", "CSS", "JavaScript", "Bootstrap"],
     demoUrl: "https://mustaf-is.github.io/S9_Mustaf-Ismajli_Final_Project/",
     repoUrl: "https://github.com/Mustaf-Is/S9_Mustaf-Ismajli_Final_Project",

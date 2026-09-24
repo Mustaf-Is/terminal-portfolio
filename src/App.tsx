@@ -180,10 +180,8 @@ function ProjectItem({ project }: { project: Project }) {
       <p>{project.summary}</p>
       <p className="tech-list">{project.technologies.join(" / ")}</p>
       <div className="project-actions">
-        <span>open {project.slug}</span>
-        <span>source {project.slug}</span>
-        <ExternalLink href={project.demoUrl}>demo ↗</ExternalLink>
-        <ExternalLink href={project.repoUrl}>source ↗</ExternalLink>
+        <span className="project-action"><code>open {project.slug}</code><span className="info">for live demo</span></span>
+        <span className="project-action"><code>source {project.slug}</code><span className="info">for source code</span></span>
       </div>
     </article>
   );
@@ -392,7 +390,7 @@ function Output({
         </div>
       );
     case "external":
-      return <p>{result.label}. {result.url && <ExternalLink href={result.url}>Continue manually ↗</ExternalLink>}</p>;
+      return <p>{result.label}...</p>;
     case "candidates":
       return <p>Matches: <span className="candidate-list">{result.items?.join("  ·  ")}</span></p>;
     case "error":

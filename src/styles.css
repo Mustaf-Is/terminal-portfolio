@@ -588,16 +588,27 @@ p.help-commands {
   font-size: 0.82rem;
 }
 
+.project-action {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.project-action code {
+  color: var(--amber);
+  font: inherit;
+}
+
+.project-action .info {
+  color: var(--muted);
+}
+
 .project-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.7rem 1.2rem;
   margin-top: 0.7rem;
   font-size: 0.78rem;
-}
-
-.project-actions span {
-  color: var(--amber);
 }
 
 .social-list {
