@@ -64,8 +64,7 @@ type Action =
   | { type: "SET_INPUT"; value: string }
   | { type: "EXECUTE"; command: string; result: CommandResult }
   | { type: "NAVIGATE_HISTORY"; direction: "up" | "down" }
-  | { type: "COMPLETE"; value: string }
-  | { type: "SHOW_CANDIDATES"; candidates: string[] };
+  | { type: "COMPLETE"; value: string };
 
 const initialState: TerminalState = {
   input: "",
@@ -129,19 +128,6 @@ function reducer(state: TerminalState, action: Action): TerminalState {
     }
     case "COMPLETE":
       return { ...state, input: action.value, historyIndex: -1 };
-    case "SHOW_CANDIDATES":
-      return {
-        ...state,
-        entries: [
-          ...state.entries,
-          {
-            id: state.nextId,
-            command: `${state.input}<TAB>`,
-            result: { kind: "candidates", items: action.candidates },
-          },
-        ],
-        nextId: state.nextId + 1,
-      };
   }
 }
 
@@ -478,11 +464,17 @@ export default function App() {
         const completion = completions[0];
         const expectsSlug = completion === "open" || completion === "source";
         dispatch({ type: "COMPLETE", value: `${completion}${expectsSlug ? " " : ""}` });
-      } else if (completions.length > 1) {
-        dispatch({ type: "SHOW_CANDIDATES", candidates: completions });
       }
     }
   }
+
+  const inputPrefix = state.input.toLowerCase();
+  const previewCompletion = inputPrefix.length >= 2
+    ? getCompletions(state.input).filter((completion) => completion.startsWith(inputPrefix))
+    : [];
+  const preview = previewCompletion.length === 1 && previewCompletion[0].length > inputPrefix.length
+    ? previewCompletion[0]
+    : null;
 
   return (
     <main className="portfolio-shell" onClick={() => inputRef.current?.focus()}>
@@ -517,20 +509,28 @@ export default function App() {
           <div className="input-row">
             <Prompt />
             <label className="sr-only" htmlFor="terminal-input">Enter a portfolio command</label>
-            <input
-              ref={inputRef}
-              id="terminal-input"
-              aria-describedby="terminal-hint"
-              autoCapitalize="none"
-              autoComplete="off"
-              autoCorrect="off"
-              spellCheck={false}
-              readOnly={themePickerOpen}
-              value={state.input}
-              onChange={(event) => dispatch({ type: "SET_INPUT", value: event.target.value })}
-              onKeyDown={handleKeyDown}
-              autoFocus
-            />
+            <div className="input-shell">
+              {preview && (
+                <span className="input-preview" aria-hidden="true">
+                  <span className="input-preview__typed">{inputPrefix}</span>
+                  <span>{preview.slice(inputPrefix.length)}</span>
+                </span>
+              )}
+              <input
+                ref={inputRef}
+                id="terminal-input"
+                aria-describedby="terminal-hint"
+                autoCapitalize="none"
+                autoComplete="off"
+                autoCorrect="off"
+                spellCheck={false}
+                readOnly={themePickerOpen}
+                value={state.input}
+                onChange={(event) => dispatch({ type: "SET_INPUT", value: event.target.value })}
+                onKeyDown={handleKeyDown}
+                autoFocus
+              />
+            </div>
           </div>
           <p id="terminal-hint" className="terminal-hint">
             {themePickerOpen ? "↑↓←→ to choose · Enter to apply · Esc to cancel" : "Enter to run · Tab to complete · ↑↓ for history"}

@@ -283,15 +283,38 @@ li {
   border-top: 1px solid var(--line);
 }
 
-.input-row input {
+.input-shell {
+  position: relative;
   min-width: 0;
   flex: 1;
+}
+
+.input-row input {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
   border: 0;
   outline: 0;
   padding: 0.25rem 0;
   color: var(--text);
   caret-color: var(--amber);
   background: transparent;
+}
+
+.input-preview {
+  position: absolute;
+  inset: 0 auto auto 0;
+  padding: 0.25rem 0;
+  color: rgb(var(--amber-rgb) / 0.48);
+  white-space: pre;
+  pointer-events: none;
+  user-select: none;
+}
+
+.input-preview__typed {
+  visibility: hidden;
 }
 
 .input-row:focus-within {
