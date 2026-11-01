@@ -265,23 +265,14 @@ function Output({
           <p className="muted-copy">Use ↑/↓ for history and Tab for completion.</p>
         </div>
       );
-    case "whoami":
-      return (
-        <div className="whoami-output">
-          <p>
-            Hi, I'm {profile.name}, a software engineer based in {profile.location}. I have experience building backend systems, data pipelines, and AI-powered automation with Python, FastAPI, TypeScript, and Node.js. I'm especially interested in the evolving world of AI and in continuing to learn and grow as an engineer.
-          </p>
-          <p className="muted-copy">
-            Outside of tech, I enjoy reading and hiking. Football is another big passion of mine—I love both playing and watching the game.
-          </p>
-        </div>
-      );
     case "about":
       return (
         <div>
           <SectionTitle>about</SectionTitle>
+          <p>Hello, I am {profile.name}, a software engineer based in {profile.location}.</p>
           <p>{profile.summary}</p>
-          <p className="muted-copy">Current focus: production-ready, AI-powered applications built on dependable backend architecture and scalable data workflows.</p>
+          <p className="muted-copy">I am especially interested in the evolving world of AI, exploring its possibilities and how it can improve software and everyday workflows. As I continue learning and experimenting, I am leaning toward a role in AI engineering.</p>
+          <p className="muted-copy">Outside of tech, I enjoy reading and hiking. Football is another big passion of mine—I love both playing and watching the game.</p>
         </div>
       );
     case "experience":

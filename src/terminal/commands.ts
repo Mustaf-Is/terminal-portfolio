@@ -3,7 +3,6 @@ import { findProject, findSocial, projectSlugs } from "../data/portfolio";
 export type OutputKind =
   | "welcome"
   | "help"
-  | "whoami"
   | "about"
   | "experience"
   | "skills"
@@ -63,7 +62,7 @@ function projectRedirect(kind: "demo" | "source", args: string[]): CommandResult
   };
 }
 
-function socialRedirect(slug: "github" | "linkedin" | "email" | "resume"): CommandResult {
+function socialRedirect(slug: "resume"): CommandResult {
   const social = findSocial(slug);
   return social
     ? { kind: "external", url: social.url, label: `Opening ${social.label}` }
@@ -71,26 +70,22 @@ function socialRedirect(slug: "github" | "linkedin" | "email" | "resume"): Comma
 }
 
 export const commands: CommandDefinition[] = [
-  { name: "help", usage: "help", description: "List available commands", execute: () => ({ kind: "help" }) },
-  { name: "welcome", usage: "welcome", description: "Show the opening banner", execute: () => ({ kind: "welcome" }) },
-  { name: "whoami", usage: "whoami", description: "Show the short introduction", execute: () => ({ kind: "whoami" }) },
-  { name: "about", usage: "about", description: "Read the full profile", execute: () => ({ kind: "about" }) },
-  { name: "experience", usage: "experience", description: "View professional experience", aliases: ["work"], execute: () => ({ kind: "experience" }) },
-  { name: "skills", usage: "skills", description: "Explore technical skills", execute: () => ({ kind: "skills" }) },
-  { name: "education", usage: "education", description: "View education and continued learning", aliases: ["learning"], execute: () => ({ kind: "education" }) },
-  { name: "projects", usage: "projects", description: "List featured and university projects", execute: () => ({ kind: "projects" }) },
-  { name: "uni-projects", usage: "uni-projects", description: "List university projects", aliases: ["university-projects"], execute: () => ({ kind: "uni-projects" }) },
-  { name: "open", usage: "open <project-slug>", description: "Open a live project demo", execute: (args) => projectRedirect("demo", args) },
-  { name: "source", usage: "source <project-slug>", description: "Open a project's source code", execute: (args) => projectRedirect("source", args) },
-  { name: "contact", usage: "contact", description: "Show contact details", execute: () => ({ kind: "contact" }) },
-  { name: "socials", usage: "socials", description: "Show social profiles", execute: () => ({ kind: "socials" }) },
-  { name: "theme", usage: "theme", description: "Choose a terminal color theme", execute: () => ({ kind: "theme" }) },
-  { name: "github", usage: "github", description: "Open GitHub", execute: () => socialRedirect("github") },
-  { name: "linkedin", usage: "linkedin", description: "Open LinkedIn", execute: () => socialRedirect("linkedin") },
-  { name: "email", usage: "email", description: "Write an email", execute: () => socialRedirect("email") },
-  { name: "resume", usage: "resume", description: "Open the résumé PDF", aliases: ["cv"], execute: () => socialRedirect("resume") },
-  { name: "history", usage: "history", description: "Show command history", execute: (_args, context) => ({ kind: "history", items: context.history }) },
+  { name: "about", usage: "about", description: "Read my personal and engineering profile", execute: () => ({ kind: "about" }) },
   { name: "clear", usage: "clear", description: "Clear the terminal output", aliases: ["cls"], execute: () => ({ kind: "clear" }) },
+  { name: "contact", usage: "contact", description: "Show contact details", execute: () => ({ kind: "contact" }) },
+  { name: "education", usage: "education", description: "View education and continued learning", aliases: ["learning"], execute: () => ({ kind: "education" }) },
+  { name: "experience", usage: "experience", description: "View professional experience", aliases: ["work"], execute: () => ({ kind: "experience" }) },
+  { name: "help", usage: "help", description: "List available commands", execute: () => ({ kind: "help" }) },
+  { name: "history", usage: "history", description: "Show command history", execute: (_args, context) => ({ kind: "history", items: context.history }) },
+  { name: "open", usage: "open <project-slug>", description: "Open a live project demo", execute: (args) => projectRedirect("demo", args) },
+  { name: "projects", usage: "projects", description: "List featured and university projects", execute: () => ({ kind: "projects" }) },
+  { name: "resume", usage: "resume", description: "Open the résumé PDF", aliases: ["cv"], execute: () => socialRedirect("resume") },
+  { name: "skills", usage: "skills", description: "Explore technical skills", execute: () => ({ kind: "skills" }) },
+  { name: "socials", usage: "socials", description: "Show social profiles", execute: () => ({ kind: "socials" }) },
+  { name: "source", usage: "source <project-slug>", description: "Open a project's source code", execute: (args) => projectRedirect("source", args) },
+  { name: "theme", usage: "theme", description: "Choose a terminal color theme", execute: () => ({ kind: "theme" }) },
+  { name: "uni-projects", usage: "uni-projects", description: "List university projects", aliases: ["university-projects"], execute: () => ({ kind: "uni-projects" }) },
+  { name: "welcome", usage: "welcome", description: "Show the opening banner", execute: () => ({ kind: "welcome" }) },
 ];
 
 const commandLookup = new Map<string, CommandDefinition>();

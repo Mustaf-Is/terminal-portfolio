@@ -41,7 +41,7 @@ export const profile = {
   location: "Prishtinë, Kosovo",
   tagline: "Backend Systems, Data Pipelines & AI Automation",
   summary:
-    "Software engineer experienced in building backend systems, scalable web-scraping and ETL pipelines, and AI-driven automation. I work with Python, FastAPI, Node.js, TypeScript, OpenAI models, and cloud services across AWS and Azure to turn complex data workflows into reliable, production-ready software.",
+    "I am experienced in building backend APIs, ETL pipelines, and LLM-powered data classification and mapping workflows. I work with Python, FastAPI, OpenAI models, Node.js, TypeScript, and AWS to turn complex data into reliable software.",
 };
 
 export const experience: ExperienceItem[] = [

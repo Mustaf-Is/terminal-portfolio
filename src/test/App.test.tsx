@@ -21,8 +21,8 @@ describe("terminal portfolio", () => {
 
   it("presents both the professional and personal sides of the profile", async () => {
     render(<App />);
-    await run("whoami");
-    expect(screen.getByText(/experience building backend systems/i)).toBeInTheDocument();
+    await run("about");
+    expect(screen.getByText(/I am experienced in building backend APIs/i)).toBeInTheDocument();
     expect(screen.getByText(/reading and hiking/i)).toBeInTheDocument();
     expect(screen.getByText(/playing and watching the game/i)).toBeInTheDocument();
   });

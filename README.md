@@ -19,12 +19,22 @@ npm run preview
 
 ## Commands
 
-- `help`, `welcome`, `whoami`, `about`
-- `experience`, `skills`, `education`
-- `projects`, `uni-projects`
-- `open <project-slug>`, `source <project-slug>`
-- `contact`, `socials`, `github`, `linkedin`, `email`, `resume`
-- `theme`, `history`, `clear`
+- `about`
+- `clear`
+- `contact`
+- `education`
+- `experience`
+- `help`
+- `history`
+- `open <project-slug>`
+- `projects`
+- `resume`
+- `skills`
+- `socials`
+- `source <project-slug>`
+- `theme`
+- `uni-projects`
+- `welcome`
 
 Use the Up/Down arrows for command history and Tab for command or project completion.
 Run `theme`, use the arrow keys to choose a palette, and press Enter to apply it.
@@ -33,7 +43,7 @@ Run `theme`, use the arrow keys to choose a palette, and press Enter to apply it
 
 Portfolio content and external URLs live in `src/data/portfolio.ts`. The command registry and parsing behavior live in `src/terminal/commands.ts`.
 
-The public résumé is generated from `scripts/build_resume.py` and deployed as `/mustafe-ismajli-resume.pdf`. It intentionally omits a phone number.
+The public résumé is the latest supplied PDF, stored at `public/mustafe-ismajli-resume.pdf`. Replace that file to update the résumé opened by `resume` and linked from `socials`.
 
 ## Netlify
 
