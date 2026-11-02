@@ -6,7 +6,7 @@ export interface Project {
   category: ProjectCategory;
   summary: string;
   technologies: string[];
-  demoUrl: string;
+  demoUrl?: string;
   repoUrl: string;
 }
 
@@ -36,7 +36,7 @@ export interface SocialLink {
 }
 
 export const profile = {
-  name: "Mustafë Ismajli",
+  name: "Mustaf Ismajli",
   role: "Software Engineer",
   location: "Prishtinë, Kosovo",
   tagline: "Backend Systems, Data Pipelines & AI Automation",
@@ -71,46 +71,32 @@ export const experience: ExperienceItem[] = [
 
 export const skills: SkillGroup[] = [
   {
-    name: "Back-end development",
-    skills: ["FastAPI", "TypeScript", "Node.js"],
+    name: "Languages",
+    skills: ["Python", "TypeScript", "JavaScript", "SQL"],
   },
   {
-    name: "Front-end development",
-    skills: ["HTML", "CSS", "JavaScript", "Bootstrap", "Tailwind", "ReactJS"],
+    name: "AI & LLMs",
+    skills: ["OpenAI API", "Pydantic AI", "Prompt engineering", "Ollama", "Qwen", "Model Context Protocol (MCP)"],
   },
   {
-    name: "AI & data",
-    skills: [
-      "Python",
-      "Databricks",
-      "LLMs",
-      "OpenAI",
-      "Prompt engineering",
-      "Data pipelines",
-      "ETL",
-      "Web scraping",
-    ],
+    name: "Backend & databases",
+    skills: ["FastAPI", "Node.js", "REST APIs", "GraphQL", "MongoDB", "MySQL", "PostgreSQL", "DuckDB"],
   },
   {
-    name: "Tools & engineering",
-    skills: [
-      "Git",
-      "GitHub",
-      "CI/CD",
-      "GitHub Actions",
-      "Docker",
-      "AWS",
-      "Azure",
-      "MongoDB",
-      "MySQL",
-      "DuckDB",
-      "Agile",
-      "Scrum",
-    ],
+    name: "Data & scraping",
+    skills: ["ETL pipelines", "Playwright", "BeautifulSoup", "lxml", "Requests", "Parquet", "Databricks"],
   },
   {
-    name: "Soft skills",
-    skills: ["Teamwork", "Critical thinking", "Adaptability", "Time management", "Creativity"],
+    name: "Frontend",
+    skills: ["React", "HTML", "CSS", "Tailwind CSS", "Bootstrap"],
+  },
+  {
+    name: "Cloud & infrastructure",
+    skills: ["AWS (Lambda, Fargate, S3, DynamoDB, SQS, EventBridge, IAM)", "Terraform", "Docker", "GitHub Actions"],
+  },
+  {
+    name: "Testing & development tools",
+    skills: ["pytest", "mypy", "Ruff", "TDD", "Unit testing", "Git", "Claude Code", "Codex", "Spec-driven development", "Architecture decision records (ADRs)"],
   },
 ];
 
@@ -140,6 +126,23 @@ export const hackathons = [
 ];
 
 export const projects: Project[] = [
+  {
+    slug: "ai-agentic-harness",
+    title: "AI Agentic Harness",
+    category: "featured",
+    summary: "Developed a command-line AI agent that runs locally with Ollama. It works with files, remembers context between sessions, and connects to tools through MCP servers.",
+    technologies: ["Python", "Ollama", "Qwen", "Model Context Protocol"],
+    repoUrl: "https://github.com/Mustaf-Is/ai-agentic-harness",
+  },
+  {
+    slug: "snake-97",
+    title: "Snake 97",
+    category: "featured",
+    summary: "Created a browser version of Snake with three difficulty levels and a leaderboard. You can play as a guest or a registered user, track your scores, and review your game history.",
+    technologies: ["TypeScript", "React", "Cloudflare Workers", "D1 SQLite"],
+    demoUrl: "https://snake-97.ismajlim26.chatgpt.site/",
+    repoUrl: "https://github.com/Mustaf-Is/Interactive-Snake-Game/",
+  },
   {
     slug: "mansory-mobilje",
     title: "Mansory Mobilje",
@@ -190,9 +193,10 @@ export const socials: SocialLink[] = [
     url: "https://www.linkedin.com/in/mustaf%C3%AB-ismajli-99b54b318/",
   },
   { slug: "email", label: "Email", url: "mailto:ismajlim26@gmail.com" },
-  { slug: "resume", label: "Résumé", url: "/mustafe-ismajli-resume.pdf" },
+  { slug: "resume", label: "Résumé", url: "/mustaf-ismajli-resume.pdf" },
 ];
 
+export const demoSlugs = projects.filter((project) => project.demoUrl).map((project) => project.slug);
 export const projectSlugs = projects.map((project) => project.slug);
 
 export function findProject(slug: string) {

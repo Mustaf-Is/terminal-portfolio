@@ -8,7 +8,7 @@ describe("command engine", () => {
 
   it("resolves aliases", () => {
     expect(executeCommand("work", { history: [] }).kind).toBe("experience");
-    expect(executeCommand("cv", { history: [] }).url).toBe("/mustafe-ismajli-resume.pdf");
+    expect(executeCommand("cv", { history: [] }).url).toBe("/mustaf-ismajli-resume.pdf");
   });
 
   it("returns useful errors for unknown commands and slugs", () => {

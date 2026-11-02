@@ -76,7 +76,7 @@ const initialState: TerminalState = {
 };
 
 const ASCII_BANNER_INNER_WIDTH = 46;
-const ASCII_BANNER_LABEL = "MUSTAFË ISMAJLI  //  SOFTWARE ENGINEER";
+const ASCII_BANNER_LABEL = "MUSTAF ISMAJLI  //  SOFTWARE ENGINEER";
 const ASCII_BANNER = [
   `┌${"─".repeat(ASCII_BANNER_INNER_WIDTH)}┐`,
   `│  ${ASCII_BANNER_LABEL.padEnd(ASCII_BANNER_INNER_WIDTH - 2)}│`,
@@ -134,7 +134,7 @@ function reducer(state: TerminalState, action: Action): TerminalState {
 function Prompt({ compact = false }: { compact?: boolean }) {
   return (
     <span className={compact ? "prompt prompt--compact" : "prompt"} aria-hidden="true">
-      <span className="prompt__user">mustafe</span>
+      <span className="prompt__user">mustaf</span>
       <span className="prompt__muted">@</span>
       <span className="prompt__host">portfolio</span>
       <span className="prompt__muted">:</span>
@@ -166,7 +166,7 @@ function ProjectItem({ project }: { project: Project }) {
       <p>{project.summary}</p>
       <p className="tech-list">{project.technologies.join(" / ")}</p>
       <div className="project-actions">
-        <span className="project-action"><code>open {project.slug}</code><span className="info">for live demo</span></span>
+        {project.demoUrl && <span className="project-action"><code>open {project.slug}</code><span className="info">for live demo</span></span>}
         <span className="project-action"><code>source {project.slug}</code><span className="info">for source code</span></span>
       </div>
     </article>
@@ -244,7 +244,7 @@ function Output({
     case "welcome":
       return (
         <div className="welcome-output">
-          <pre className="ascii-banner" aria-label="Mustafë Ismajli">{ASCII_BANNER}</pre>
+          <pre className="ascii-banner" aria-label="Mustaf Ismajli">{ASCII_BANNER}</pre>
           <p className="welcome-role">Software Engineer | Backend Systems, Data Pipelines & AI Automation</p>
           <p className="muted-copy">Building production-ready software for complex data and real-world workflows, from robust APIs to AI-powered automation. Passionate about the evolving world of AI, I'm driven to keep learning, take on new challenges, and grow as a software engineer.</p>
           <p className="help-commands">Type <code>help</code> to explore or <code>projects</code> to see selected work.</p>
@@ -469,14 +469,14 @@ export default function App() {
 
   return (
     <main className="portfolio-shell" onClick={() => inputRef.current?.focus()}>
-      <section className="terminal" aria-label="Mustafë Ismajli terminal portfolio">
+      <section className="terminal" aria-label="Mustaf Ismajli terminal portfolio">
         <header className="terminal-bar">
           <div className="window-controls" aria-hidden="true">
             <span className="window-dot window-dot--violet" />
             <span className="window-dot window-dot--amber" />
             <span className="window-dot window-dot--teal" />
           </div>
-          <p>mustafe@portfolio — ~/career</p>
+          <p>mustaf@portfolio — ~/career</p>
           <span className="online-status"><i /> ONLINE</span>
         </header>
 

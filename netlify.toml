@@ -13,6 +13,6 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
 [[headers]]
-  for = "/mustafe-ismajli-resume.pdf"
+  for = "/mustaf-ismajli-resume.pdf"
   [headers.values]
-    Content-Disposition = "inline; filename=mustafe-ismajli-resume.pdf"
+    Content-Disposition = "inline; filename=mustaf-ismajli-resume.pdf"
