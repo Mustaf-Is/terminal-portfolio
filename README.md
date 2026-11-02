@@ -51,6 +51,8 @@ The public résumé is the latest supplied PDF, stored at `public/mustaf-ismajli
 
 ## Projects
 
+- [AI Agentic Harness](https://github.com/Mustaf-Is/ai-agentic-harness)
+- [Snake 97](https://github.com/Mustaf-Is/Interactive-Snake-Game/)
 - [Mansory Mobilje](https://mansory-mobilje.netlify.app/)
 - [ELB Construction](https://elb-construction.netlify.app/#accueil)
 - [Illyrian Books](https://illyrian-books.netlify.app/)

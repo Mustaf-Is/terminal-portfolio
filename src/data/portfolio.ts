@@ -6,7 +6,7 @@ export interface Project {
   category: ProjectCategory;
   summary: string;
   technologies: string[];
-  demoUrl: string;
+  demoUrl?: string;
   repoUrl: string;
 }
 
@@ -127,6 +127,23 @@ export const hackathons = [
 
 export const projects: Project[] = [
   {
+    slug: "ai-agentic-harness",
+    title: "AI Agentic Harness",
+    category: "featured",
+    summary: "Developed a command-line AI agent that runs locally with Ollama. It works with files, remembers context between sessions, and connects to tools through MCP servers.",
+    technologies: ["Python", "Ollama", "Qwen", "Model Context Protocol"],
+    repoUrl: "https://github.com/Mustaf-Is/ai-agentic-harness",
+  },
+  {
+    slug: "snake-97",
+    title: "Snake 97",
+    category: "featured",
+    summary: "Created a browser version of Snake with three difficulty levels and a leaderboard. You can play as a guest or a registered user, track your scores, and review your game history.",
+    technologies: ["TypeScript", "React", "Cloudflare Workers", "D1 SQLite"],
+    demoUrl: "https://snake-97.ismajlim26.chatgpt.site/",
+    repoUrl: "https://github.com/Mustaf-Is/Interactive-Snake-Game/",
+  },
+  {
     slug: "mansory-mobilje",
     title: "Mansory Mobilje",
     category: "featured",
@@ -179,6 +196,7 @@ export const socials: SocialLink[] = [
   { slug: "resume", label: "Résumé", url: "/mustaf-ismajli-resume.pdf" },
 ];
 
+export const demoSlugs = projects.filter((project) => project.demoUrl).map((project) => project.slug);
 export const projectSlugs = projects.map((project) => project.slug);
 
 export function findProject(slug: string) {

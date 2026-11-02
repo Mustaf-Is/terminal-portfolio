@@ -34,12 +34,12 @@ describe("terminal portfolio", () => {
     expect(rows.map((row) => row.length)).toEqual([48, 48, 48]);
   });
 
-  it("renders both project groups and all four projects", async () => {
+  it("renders both project groups and all six projects", async () => {
     render(<App />);
     await run("projects");
     expect(screen.getByText("featured-builds/")).toBeInTheDocument();
     expect(screen.getByText("uni-projects/")).toBeInTheDocument();
-    for (const title of ["Mansory Mobilje", "ELB Construction", "Illyrian Books", "ProWeb"]) {
+    for (const title of ["AI Agentic Harness", "Snake 97", "Mansory Mobilje", "ELB Construction", "Illyrian Books", "ProWeb"]) {
       expect(screen.getByRole("heading", { name: title })).toBeInTheDocument();
     }
   });

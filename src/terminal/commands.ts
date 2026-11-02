@@ -1,4 +1,4 @@
-import { findProject, findSocial, projectSlugs } from "../data/portfolio";
+import { demoSlugs, findProject, findSocial, projectSlugs } from "../data/portfolio";
 
 export type OutputKind =
   | "welcome"
@@ -39,11 +39,12 @@ export interface CommandDefinition {
 }
 
 function projectRedirect(kind: "demo" | "source", args: string[]): CommandResult {
+  const validSlugs = kind === "demo" ? demoSlugs : projectSlugs;
   const slug = args[0];
   if (!slug) {
     return {
       kind: "error",
-      message: `Usage: ${kind === "demo" ? "open" : "source"} <project-slug>\nValid slugs: ${projectSlugs.join(", ")}`,
+      message: `Usage: ${kind === "demo" ? "open" : "source"} <project-slug>\nValid slugs: ${validSlugs.join(", ")}`,
     };
   }
 
@@ -51,13 +52,18 @@ function projectRedirect(kind: "demo" | "source", args: string[]): CommandResult
   if (!project) {
     return {
       kind: "error",
-      message: `Unknown project "${slug}". Valid slugs: ${projectSlugs.join(", ")}`,
+      message: `Unknown project "${slug}". Valid slugs: ${validSlugs.join(", ")}`,
     };
+  }
+
+  const url = kind === "demo" ? project.demoUrl : project.repoUrl;
+  if (!url) {
+    return { kind: "error", message: `${project.title} runs locally. Use "source ${slug}" for setup instructions.` };
   }
 
   return {
     kind: "external",
-    url: kind === "demo" ? project.demoUrl : project.repoUrl,
+    url,
     label: `${kind === "demo" ? "Opening" : "Opening source for"} ${project.title}`,
   };
 }
@@ -124,7 +130,7 @@ export function getCompletions(input: string): string[] {
 
   const [command, partial = ""] = parts;
   if ((command === "open" || command === "source") && parts.length === 2) {
-    return projectSlugs
+    return (command === "open" ? demoSlugs : projectSlugs)
       .filter((slug) => slug.startsWith(partial))
       .map((slug) => `${command} ${slug}`);
   }

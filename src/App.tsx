@@ -166,7 +166,7 @@ function ProjectItem({ project }: { project: Project }) {
       <p>{project.summary}</p>
       <p className="tech-list">{project.technologies.join(" / ")}</p>
       <div className="project-actions">
-        <span className="project-action"><code>open {project.slug}</code><span className="info">for live demo</span></span>
+        {project.demoUrl && <span className="project-action"><code>open {project.slug}</code><span className="info">for live demo</span></span>}
         <span className="project-action"><code>source {project.slug}</code><span className="info">for source code</span></span>
       </div>
     </article>
