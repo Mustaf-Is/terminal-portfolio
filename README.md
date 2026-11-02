@@ -1,6 +1,6 @@
-# Mustafë Ismajli — Terminal Portfolio
+# Mustaf Ismajli — Terminal Portfolio
 
-An original terminal-style portfolio built with React, TypeScript, Vite, and plain CSS. It presents Mustafë's backend engineering experience, technical skills, education, projects, and contact links through a keyboard-friendly command interface.
+An original terminal-style portfolio built with React, TypeScript, Vite, and plain CSS. It presents Mustaf's backend engineering experience, technical skills, education, projects, and contact links through a keyboard-friendly command interface.
 
 ## Local development
 
@@ -43,7 +43,7 @@ Run `theme`, use the arrow keys to choose a palette, and press Enter to apply it
 
 Portfolio content and external URLs live in `src/data/portfolio.ts`. The command registry and parsing behavior live in `src/terminal/commands.ts`.
 
-The public résumé is the latest supplied PDF, stored at `public/mustafe-ismajli-resume.pdf`. Replace that file to update the résumé opened by `resume` and linked from `socials`.
+The public résumé is the latest supplied PDF, stored at `public/mustaf-ismajli-resume.pdf`. Replace that file to update the résumé opened by `resume` and linked from `socials`.
 
 ## Netlify
 

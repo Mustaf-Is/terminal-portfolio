@@ -36,7 +36,7 @@ export interface SocialLink {
 }
 
 export const profile = {
-  name: "Mustafë Ismajli",
+  name: "Mustaf Ismajli",
   role: "Software Engineer",
   location: "Prishtinë, Kosovo",
   tagline: "Backend Systems, Data Pipelines & AI Automation",
@@ -71,46 +71,32 @@ export const experience: ExperienceItem[] = [
 
 export const skills: SkillGroup[] = [
   {
-    name: "Back-end development",
-    skills: ["FastAPI", "TypeScript", "Node.js"],
+    name: "Languages",
+    skills: ["Python", "TypeScript", "JavaScript", "SQL"],
   },
   {
-    name: "Front-end development",
-    skills: ["HTML", "CSS", "JavaScript", "Bootstrap", "Tailwind", "ReactJS"],
+    name: "AI & LLMs",
+    skills: ["OpenAI API", "Pydantic AI", "Prompt engineering", "Ollama", "Qwen", "Model Context Protocol (MCP)"],
   },
   {
-    name: "AI & data",
-    skills: [
-      "Python",
-      "Databricks",
-      "LLMs",
-      "OpenAI",
-      "Prompt engineering",
-      "Data pipelines",
-      "ETL",
-      "Web scraping",
-    ],
+    name: "Backend & databases",
+    skills: ["FastAPI", "Node.js", "REST APIs", "GraphQL", "MongoDB", "MySQL", "PostgreSQL", "DuckDB"],
   },
   {
-    name: "Tools & engineering",
-    skills: [
-      "Git",
-      "GitHub",
-      "CI/CD",
-      "GitHub Actions",
-      "Docker",
-      "AWS",
-      "Azure",
-      "MongoDB",
-      "MySQL",
-      "DuckDB",
-      "Agile",
-      "Scrum",
-    ],
+    name: "Data & scraping",
+    skills: ["ETL pipelines", "Playwright", "BeautifulSoup", "lxml", "Requests", "Parquet", "Databricks"],
   },
   {
-    name: "Soft skills",
-    skills: ["Teamwork", "Critical thinking", "Adaptability", "Time management", "Creativity"],
+    name: "Frontend",
+    skills: ["React", "HTML", "CSS", "Tailwind CSS", "Bootstrap"],
+  },
+  {
+    name: "Cloud & infrastructure",
+    skills: ["AWS (Lambda, Fargate, S3, DynamoDB, SQS, EventBridge, IAM)", "Terraform", "Docker", "GitHub Actions"],
+  },
+  {
+    name: "Testing & development tools",
+    skills: ["pytest", "mypy", "Ruff", "TDD", "Unit testing", "Git", "Claude Code", "Codex", "Spec-driven development", "Architecture decision records (ADRs)"],
   },
 ];
 
@@ -190,7 +176,7 @@ export const socials: SocialLink[] = [
     url: "https://www.linkedin.com/in/mustaf%C3%AB-ismajli-99b54b318/",
   },
   { slug: "email", label: "Email", url: "mailto:ismajlim26@gmail.com" },
-  { slug: "resume", label: "Résumé", url: "/mustafe-ismajli-resume.pdf" },
+  { slug: "resume", label: "Résumé", url: "/mustaf-ismajli-resume.pdf" },
 ];
 
 export const projectSlugs = projects.map((project) => project.slug);

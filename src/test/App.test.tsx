@@ -29,7 +29,7 @@ describe("terminal portfolio", () => {
 
   it("renders an ASCII banner with equally sized rows", () => {
     render(<App />);
-    const rows = screen.getByLabelText("Mustafë Ismajli").textContent?.split("\n") ?? [];
+    const rows = screen.getByLabelText("Mustaf Ismajli").textContent?.split("\n") ?? [];
     expect(rows).toHaveLength(3);
     expect(rows.map((row) => row.length)).toEqual([48, 48, 48]);
   });
